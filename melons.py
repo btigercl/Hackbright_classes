@@ -12,12 +12,18 @@ class Melon(object):
         self.season = season.lower()
 
 
-    def price(self):
-        price = 5
+    def price(self, quantity):
+
+        price = 5.00
         if self.origin == "imported":
             price = price * 1.5 
         if self.shape == "square":
             price = price * 2
         if self.diff_to_grow == True:
             price = price + 1
-        return float(price)
+        price = price * quantity
+        if self.melon_type == "watermelon" and quantity >= 3:
+            price = price * .75 
+        if self.melon_type == "cantaloupe" and quantity >= 5:
+            price = price * .50
+        return price
